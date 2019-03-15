@@ -1,0 +1,53 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Location
+    </title>
+</head>
+<body>
+<button type="button" data-hash="clicked" id="btn">Click</button>
+<div class="hidden" id="img">
+    <img src="//image.shutterstock.com/image-photo/woman-using-smartphone-control-electric-450w-730702534.jpg">
+</div>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+<script>
+  const img = document.getElementById('img');
+  const toggleImg = () => {
+    if (img.classList.contains('hidden'))
+      img.classList.remove('hidden');
+    else
+      img.classList.add('hidden');
+  };
+
+  const checkHash = () => {
+    if (location.hash === "#clicked" && img.classList.contains('hidden')) {
+      img.classList.remove('hidden');
+    }
+
+
+  };
+  const changeHash = (hash) => {
+    if (location.hash.length)
+      history.pushState("", document.title, window.location.pathname);
+    else
+      location.hash = hash;
+
+    toggleImg();
+  };
+
+  const hash = () => {
+    const btnHash = document.getElementById('btn').dataset.hash;
+    btn.addEventListener('click', () => changeHash(btnHash));
+    checkHash();
+  };
+
+  document.addEventListener("DOMContentLoaded", hash);
+
+</script>
+</body>
+</html>
